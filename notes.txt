@@ -14,4 +14,7 @@
 7) create controller like clients
 8) use clientsController in routes and test paths with postman
 9) products controller, model and routes created
+10) add shortid and multer for upload images
+     npm install --save shortid multer  # shortid is for image names
+    
 

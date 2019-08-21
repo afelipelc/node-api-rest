@@ -1,11 +1,30 @@
 const Product = require('../models/Product');
 
+const multer = require('multer');
+const multerConfig = require('../utils/multerConfig');
+
+// set multer config and model field
+const upload = multer(multerConfig).single('image');
+
+// file upload
+exports.fileUpload = (req, res, next) => {
+  upload(req, res, function(error) {
+    if (error) {
+      res.json({ message: error });
+    }
+    return next();
+  });
+};
+
 // add product
 exports.add = async (req, res) => {
   console.log(req.body);
   const product = new Product(req.body);
 
   try {
+    if(req.file.filename) {
+      product.image = req.file.filename;
+    }
     await product.save();
 
     res.json({ message: 'New product added' });

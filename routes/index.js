@@ -20,7 +20,10 @@ module.exports = function() {
 
   // ### Products ###
   // post: add new product
-  router.post('/products', productsController.add);
+  router.post('/products', 
+    productsController.fileUpload,
+    productsController.add
+  );
   // get: all products
   router.get('/products', productsController.products);
   // get: product by :id
