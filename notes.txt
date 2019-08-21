@@ -2,5 +2,12 @@
 2) install dependences:
     npm install --save express
     npm install --save-dev nodemon  # live changes server
-3) 
+3) create express app, and routes initial
+4) install mongodb server >>> https://tecadmin.net/install-mongodb-on-ubuntu/
+    start mongod: sudo systemctl start mongod  sudo systemctl stop mongod 
+    create and chmod /data/db
+
+5) mongodb in project: $ npm install --save mongoose
+  add connection in index.js app
+
 
