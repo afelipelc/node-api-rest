@@ -1,0 +1,83 @@
+const Product = require('../models/Product');
+
+// add product
+exports.add = async (req, res) => {
+  console.log(req.body);
+  const product = new Product(req.body);
+
+  try {
+    await product.save();
+
+    res.json({ message: 'New product added' });
+  } catch (error) {
+    console.log(error);
+    next();
+  }
+};
+
+// get product
+exports.products = async (req, res) => {
+  try {
+    const products = await Product.find({});
+    res.json(products);
+  } catch (error) {
+    console.log(error);
+    next();
+  }
+};
+
+
+// get product by :id
+exports.show = async (req, res, next) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+    res.json({
+      message: 'Product doesn\'t exists'
+    });
+    next();
+    }
+
+    res.json(product);
+  } catch (error) {
+    console.log(error);
+    res.json({
+      message: 'Error, check your info'
+    });
+    next();
+  }
+};
+
+// put: update product
+exports.update = async (req, res, next) => {
+  try {
+    const product = await Product.findOneAndUpdate(
+      { _id: req.params.id },
+      req.body,
+      { new: true } // return updated
+    );
+    res.json(product);
+  } catch (error) {
+    console.log(error);
+    res.json({
+      message: 'Error, check your sended info'
+    });
+    next();
+  }
+};
+
+// delete: product
+exports.delete = async (req, res, next) => {
+  try {
+    await Product.findOneAndDelete({ _id: req.params.id });
+    res.json({
+      message: 'Product was deleted'
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      message: 'Error, check your sended info'
+    });
+    next();
+  }
+};

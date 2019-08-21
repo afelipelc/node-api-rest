@@ -13,4 +13,5 @@
 6) create models/ schemas - clients created
 7) create controller like clients
 8) use clientsController in routes and test paths with postman
+9) products controller, model and routes created
 
