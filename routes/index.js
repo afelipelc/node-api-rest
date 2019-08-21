@@ -2,14 +2,12 @@ const express = require('express');
 
 const router = express.Router();
 
-module.exports = function() {
-  router.get('/', (req, res) => {
-    res.send('inicio');
-  });
+const clientsController = require('../controllers/clientsController');
 
-  router.get('/about', (req, res) => {
-    res.send('nosotros');
-  });
+module.exports = function() {
+  // post: add new client
+  router.post('/clients', clientsController.addClient);
+  router.get('/clients', clientsController.clients);
 
   return router;
 }
