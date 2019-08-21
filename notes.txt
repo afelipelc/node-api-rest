@@ -10,4 +10,4 @@
 5) mongodb in project: $ npm install --save mongoose
   add connection in index.js app
 
-
+6) create models/ schemas - clients created
