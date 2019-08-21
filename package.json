@@ -1,0 +1,17 @@
+{
+  "name": "restapisnode",
+  "version": "1.0.0",
+  "description": "Aprendiendo nodejs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./index.js"
+  },
+  "author": "Felipe LC",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}

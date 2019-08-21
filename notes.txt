@@ -1,0 +1,6 @@
+1) create package.json   $ npm init
+2) install dependences:
+    npm install --save express
+    npm install --save-dev nodemon  # live changes server
+3) 
+
