@@ -22,7 +22,7 @@ exports.add = async (req, res) => {
   const product = new Product(req.body);
 
   try {
-    if(req.file.filename) {
+    if(req.file && req.file.filename) {
       product.image = req.file.filename;
     }
     await product.save();
@@ -70,12 +70,24 @@ exports.show = async (req, res, next) => {
 // put: update product
 exports.update = async (req, res, next) => {
   try {
-    const product = await Product.findOneAndUpdate(
+    // generate new product
+    let newProduct = req.body;
+
+    // if new image
+    if(req.file && req.file.filename) {
+      newProduct.image = req.file.filename;
+    } else {
+      const product = await Product.findById(req.params.id);
+      newProduct = product.image;
+    }
+
+
+    const productUpdated = await Product.findOneAndUpdate(
       { _id: req.params.id },
-      req.body,
+      newProduct,
       { new: true } // return updated
     );
-    res.json(product);
+    res.json(productUpdated);
   } catch (error) {
     console.log(error);
     res.json({
