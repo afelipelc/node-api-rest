@@ -16,5 +16,21 @@
 9) products controller, model and routes created
 10) add shortid and multer for upload images
      npm install --save shortid multer  # shortid is for image names
-    
+11) add orders controller
+    ## send new order
+    {
+      "client": "5d5d6c9b177c8b391afcdfd6",
+      "products": [
+        {
+          "product": "5d5d9bd622a10b5b6968de2b",
+          "qty": 2
+        },
+        {
+          "product": "5d5db7ddbb7b4e73efc63e21",
+          "qty": 1
+        }
+      ],
+      "amount": "50.0"
+    }
+
 

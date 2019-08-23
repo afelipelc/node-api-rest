@@ -4,6 +4,7 @@ const router = express.Router();
 
 const clientsController = require('../controllers/clientsController');
 const productsController = require('../controllers/productsController');
+const ordersController = require('../controllers/ordersController');
 
 module.exports = function() {
   // ### Clients ###
@@ -32,5 +33,18 @@ module.exports = function() {
   router.put('/products/:id', productsController.update);
   // delete: product
   router.delete('/products/:id', productsController.delete);
+
+  // ### Orders ###
+  // post: add new order
+  router.post('/orders', ordersController.add);
+  // get: all orders
+  router.get('/orders', ordersController.orders);
+  // get: product by :id
+  router.get('/orders/:id', ordersController.show);
+  // put: update product
+  router.put('/orders/:id', ordersController.update);
+  // delete: product
+  router.delete('/orders/:id', ordersController.delete);
+
   return router;
 }
