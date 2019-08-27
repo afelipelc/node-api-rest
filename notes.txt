@@ -32,5 +32,9 @@
       ],
       "amount": "50.0"
     }
+12) eneable CORS
+    npm install --save cors
+    eneable in index.js
+
 
 
