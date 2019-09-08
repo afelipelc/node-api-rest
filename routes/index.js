@@ -30,7 +30,10 @@ module.exports = function() {
   // get: product by :id
   router.get('/products/:id', productsController.show);
   // put: update product
-  router.put('/products/:id', productsController.update);
+  router.put('/products/:id',
+    productsController.fileUpload,
+    productsController.update
+  );
   // delete: product
   router.delete('/products/:id', productsController.delete);
 

@@ -1,6 +1,8 @@
 const Product = require('../models/Product');
 
 const multer = require('multer');
+const shortid = require('shortid');
+
 const multerConfig = require('../utils/multerConfig');
 
 // set multer config and model field
@@ -78,7 +80,7 @@ exports.update = async (req, res, next) => {
       newProduct.image = req.file.filename;
     } else {
       const product = await Product.findById(req.params.id);
-      newProduct = product.image;
+      newProduct.image = product.image;
     }
 
 
@@ -87,7 +89,8 @@ exports.update = async (req, res, next) => {
       newProduct,
       { new: true } // return updated
     );
-    res.json(productUpdated);
+
+    res.json({ message: 'Product updated success' });
   } catch (error) {
     console.log(error);
     res.json({
