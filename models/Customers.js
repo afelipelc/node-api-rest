@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const clientsSchema = new Schema({
+const customersSchema = new Schema({
   name: {
     type: String,
     trim: true
@@ -27,4 +27,4 @@ const clientsSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('Clients', clientsSchema);
+module.exports = mongoose.model('Customers', customersSchema);

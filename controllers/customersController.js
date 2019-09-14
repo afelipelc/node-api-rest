@@ -1,14 +1,13 @@
-const Clients = require('../models/Clients');
+const Customers = require('../models/Customers');
 
-// add Client
-exports.addClient = async (req, res) => {
-  console.log(req.body);
-  const client = new Clients(req.body);
+// add Customer
+exports.add = async (req, res) => {
+  const customer = new Customers(req.body);
 
   try {
-    await client.save();
+    await customer.save();
 
-    res.json({ message: 'New client added' });
+    res.json({ message: 'New customer added' });
   } catch (error) {
     console.log(error);
     res.send(error);
@@ -16,11 +15,11 @@ exports.addClient = async (req, res) => {
   }
 };
 
-// get clients
-exports.clients = async (req, res) => {
+// get customers
+exports.list = async (req, res) => {
   try {
-    const clients = await Clients.find({});
-    res.json(clients);
+    const customers = await Customers.find({});
+    res.json(customers);
   } catch (error) {
     console.log(error);
     res.send(error);
@@ -29,18 +28,18 @@ exports.clients = async (req, res) => {
 };
 
 
-// get client by :id
+// get customer by :id
 exports.show = async (req, res, next) => {
   try {
-    const client = await Clients.findById(req.params.id);
-    if (!client) {
+    const customer = await Customers.findById(req.params.id);
+    if (!customer) {
     res.json({
-      message: 'Client doesn\'t exists'
+      message: 'Customer doesn\'t exists'
     });
     next();
     }
 
-    res.json(client);
+    res.json(customer);
   } catch (error) {
     console.log(error);
     res.json({
@@ -50,16 +49,16 @@ exports.show = async (req, res, next) => {
   }
 };
 
-// put: update client
+// put: update customer
 exports.update = async (req, res, next) => {
   try {
-    const client = await Clients.findOneAndUpdate(
+    const customer = await Customers.findOneAndUpdate(
       { _id: req.params.id },
       req.body,
       { new: true } // return updated
     );
     res.json({
-      message: 'Client updated successfuly'
+      message: 'Customer updated successfuly'
     });
   } catch (error) {
     console.log(error);
@@ -70,12 +69,12 @@ exports.update = async (req, res, next) => {
   }
 };
 
-// delete: client
+// delete: customer
 exports.delete = async (req, res, next) => {
   try {
-    await Clients.findOneAndDelete({ _id: req.params.id });
+    await Customers.findOneAndDelete({ _id: req.params.id });
     res.json({
-      message: 'Client was deleted'
+      message: 'Customer was deleted'
     });
   } catch (error) {
     console.log(error);
@@ -85,3 +84,4 @@ exports.delete = async (req, res, next) => {
     next();
   }
 };
+

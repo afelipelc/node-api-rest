@@ -1,7 +1,6 @@
 const Product = require('../models/Product');
 
 const multer = require('multer');
-const shortid = require('shortid');
 
 const multerConfig = require('../utils/multerConfig');
 
@@ -20,7 +19,6 @@ exports.fileUpload = (req, res, next) => {
 
 // add product
 exports.add = async (req, res) => {
-  console.log(req.body);
   const product = new Product(req.body);
 
   try {
@@ -115,3 +113,4 @@ exports.delete = async (req, res, next) => {
     next();
   }
 };
+

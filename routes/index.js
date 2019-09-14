@@ -2,22 +2,22 @@ const express = require('express');
 
 const router = express.Router();
 
-const clientsController = require('../controllers/clientsController');
+const customersController = require('../controllers/customersController');
 const productsController = require('../controllers/productsController');
 const ordersController = require('../controllers/ordersController');
 
 module.exports = function() {
-  // ### Clients ###
+  // ### Customers ###
   // post: add new client
-  router.post('/clients', clientsController.addClient);
-  // get: all clients
-  router.get('/clients', clientsController.clients);
+  router.post('/customers', customersController.add);
+  // get: all customers
+  router.get('/customers', customersController.list);
   // get: client by :id
-  router.get('/clients/:id', clientsController.show);
+  router.get('/customers/:id', customersController.show);
   // put: update client
-  router.put('/clients/:id', clientsController.update);
+  router.put('/customers/:id', customersController.update);
   // delete: client
-  router.delete('/clients/:id', clientsController.delete);
+  router.delete('/customers/:id', customersController.delete);
 
   // ### Products ###
   // post: add new product

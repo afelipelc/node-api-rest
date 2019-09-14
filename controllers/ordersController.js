@@ -17,10 +17,12 @@ exports.add = async (req, res) => {
 // get orders
 exports.orders = async (req, res) => {
   try {
-    const order = await Order.find({}).populate('client').populate({
-      path: 'products.product',
-      model: 'Products'
-    });
+    const order = await Order.find({})
+      .populate('client')
+      .populate({
+        path: 'products.product',
+        model: 'Products'
+      });
     res.json(order);
   } catch (error) {
     console.log(error);
@@ -33,16 +35,16 @@ exports.orders = async (req, res) => {
 exports.show = async (req, res, next) => {
   try {
     const order = await Order.findById(req.params.id)
-    .populate('client')
-    .populate({
-      path: 'products.product',
-      model: 'Products'
-    });
+      .populate('client')
+      .populate({
+        path: 'products.product',
+        model: 'Products'
+      });
     if (!order) {
-    res.json({
-      message: 'Order doesn\'t exists'
-    });
-    next();
+      res.json({
+        message: 'Order doesn\'t exists'
+      });
+      next();
     }
 
     res.json(order);
