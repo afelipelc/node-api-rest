@@ -1,1 +1,1 @@
-Project created from udemy course: https://www.udemy.com/course-dashboard-redirect/?course_id=2306018
+Project created from udemy course: https://www.udemy.com/course/nodejs-bootcamp-desarrollo-web-mvc-y-rest-apis/
