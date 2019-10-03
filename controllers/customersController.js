@@ -62,9 +62,10 @@ exports.update = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
-    res.json({
+    /*res.json({
       message: 'Error, check your sended info'
-    });
+    });*/
+    res.send(error);
     next();
   }
 };

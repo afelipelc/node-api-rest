@@ -114,3 +114,17 @@ exports.delete = async (req, res, next) => {
   }
 };
 
+// post: query
+exports.search = async (req, res, next) => {
+  try {
+    const product = await Product.find({ name: new RegExp(req.params.query, 'i')});
+    res.json(product);
+  } catch (error) {
+    console.log(error);
+    res.json({
+      message: 'Error on find product'
+    });
+    next();
+  }
+};
+

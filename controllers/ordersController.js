@@ -18,7 +18,7 @@ exports.add = async (req, res) => {
 exports.orders = async (req, res) => {
   try {
     const order = await Order.find({})
-      .populate('client')
+      .populate('customer')
       .populate({
         path: 'products.product',
         model: 'Products'
@@ -30,12 +30,27 @@ exports.orders = async (req, res) => {
   }
 };
 
+// get orders by customer
+exports.by_customer = async (req, res) => {
+  try {
+    const order = await Order.find({customer: req.params.customer})
+      .populate('customer')
+      .populate({
+        path: 'products.product',
+        model: 'Products'
+      });
+    res.json(order);
+  } catch (error) {
+    console.log(error);
+    next();
+  }
+};
 
 // get order by :id
 exports.show = async (req, res, next) => {
   try {
     const order = await Order.findById(req.params.id)
-      .populate('client')
+      .populate('customer')
       .populate({
         path: 'products.product',
         model: 'Products'
@@ -65,7 +80,7 @@ exports.update = async (req, res, next) => {
       req.body,
       { new: true } // return updated
     )
-    .populate('client')
+    .populate('customer')
     .populate({
       path: 'products.product',
       model: 'Products'

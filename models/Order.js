@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
-  client: {
+  customer: {
     type: Schema.ObjectId,
-    ref: 'Clients'
+    ref: 'Customers'
   },
   products: [{
     product: {

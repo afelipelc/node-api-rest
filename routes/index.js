@@ -37,11 +37,16 @@ module.exports = function() {
   // delete: product
   router.delete('/products/:id', productsController.delete);
 
+  // find product
+  router.post('/products/search/:query', productsController.search);
+
   // ### Orders ###
   // post: add new order
   router.post('/orders', ordersController.add);
   // get: all orders
   router.get('/orders', ordersController.orders);
+  // orders by customer
+  router.get('/orders/:customer', ordersController.by_customer);
   // get: product by :id
   router.get('/orders/:id', ordersController.show);
   // put: update product
